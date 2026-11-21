@@ -1,0 +1,171 @@
+[gd_scene load_steps=11 format=4 uid="uid://ytk5oopq7c8"]
+
+[ext_resource type="Texture2D" uid="uid://djpycl66c4ob2" path="res://floortiles.png" id="1_80nbo"]
+[ext_resource type="Texture2D" uid="uid://dty2j0wv1be4s" path="res://store.png" id="2_e2o6t"]
+[ext_resource type="PackedScene" uid="uid://x734a61ntj25" path="res://player.tscn" id="3_feb5d"]
+[ext_resource type="PackedScene" uid="uid://2ilsnvikg3f8" path="res://customer.tscn" id="4_fc0e3"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_e2o6t"]
+texture = ExtResource("1_80nbo")
+texture_region_size = Vector2i(32, 32)
+2:0/0 = 0
+2:0/0/texture_origin = Vector2i(0, -8)
+3:0/0 = 0
+3:0/0/texture_origin = Vector2i(0, -8)
+2:1/0 = 0
+3:1/0 = 0
+1:0/0 = 0
+1:0/0/texture_origin = Vector2i(0, -8)
+1:0/0/z_index = 1
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, -8, -16, 0, 0, 8, 16, 0)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, -8)
+
+[sub_resource type="TileSet" id="TileSet_feb5d"]
+tile_shape = 1
+tile_size = Vector2i(32, 16)
+physics_layer_0/collision_layer = 0
+sources/0 = SubResource("TileSetAtlasSource_e2o6t")
+
+[sub_resource type="Environment" id="Environment_80nbo"]
+background_mode = 1
+ambient_light_energy = 6.9
+glow_enabled = true
+
+[sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_e2o6t"]
+
+[sub_resource type="Compositor" id="Compositor_feb5d"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_fc0e3"]
+vertices = PackedVector2Array(339.78125, 101.92969, 176.04688, 183.78906, 71.28125, 130.17188, 235.90625, 49.171875)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(49, 130, 236, 38, 362, 102, 176, 195)])
+
+[node name="Game" type="Node2D"]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+modulate = Color(1.0954857, 1.0954857, 1.0954857, 1)
+y_sort_enabled = true
+texture_filter = 1
+position = Vector2(-190, -155)
+tile_map_data = PackedByteArray("AAALABkAAAABAAAAAAALABoAAAABAAAAAAAKABsAAAABAAAAAAAKABwAAAABAAAAAAAJAB0AAAABAAAAAAAJAB4AAAABAAAAAAAIAB8AAAABAAAAAAAIACAAAAABAAAAAAAHACEAAAABAAAAAAAIACIAAAABAAAAAAAIACMAAAABAAAAAAAJACQAAAABAAAAAAAJACUAAAABAAAAAAAKACYAAAABAAAAAAAKACcAAAABAAAAAAALACgAAAABAAAAAAAMABkAAAABAAAAAAAMABoAAAABAAAAAAALABsAAAABAAAAAAALABwAAAABAAAAAAAKAB0AAAABAAAAAAAKAB4AAAABAAAAAAAJAB8AAAABAAAAAAAJACAAAAABAAAAAAAIACEAAAABAAAAAAAJACIAAAABAAAAAAAJACEAAAABAAAAAAAKACAAAAABAAAAAAAKAB8AAAABAAAAAAALAB4AAAABAAAAAAALAB0AAAABAAAAAAAMABwAAAABAAAAAAAMABsAAAABAAAAAAANABoAAAABAAAAAAANABsAAAABAAAAAAANABwAAAABAAAAAAAMAB0AAAABAAAAAAAMAB4AAAABAAAAAAALAB8AAAABAAAAAAALACAAAAABAAAAAAAKACEAAAABAAAAAAAKACIAAAABAAAAAAAJACMAAAABAAAAAAAKACQAAAABAAAAAAAKACMAAAABAAAAAAALACIAAAABAAAAAAALACEAAAABAAAAAAAMACAAAAABAAAAAAAMAB8AAAABAAAAAAANAB4AAAABAAAAAAANAB0AAAABAAAAAAAOABwAAAABAAAAAAAOAB0AAAABAAAAAAAOAB4AAAABAAAAAAANAB8AAAABAAAAAAANACAAAAABAAAAAAAMACEAAAABAAAAAAAMACIAAAABAAAAAAALACMAAAABAAAAAAALACQAAAABAAAAAAAKACUAAAABAAAAAAALACYAAAABAAAAAAALACUAAAABAAAAAAAMACQAAAABAAAAAAAMACMAAAABAAAAAAANACIAAAABAAAAAAANACEAAAABAAAAAAAOACAAAAABAAAAAAAOAB8AAAABAAAAAAAPAB4AAAABAAAAAAAPAB8AAAABAAAAAAAPACAAAAABAAAAAAAOACEAAAABAAAAAAAOACIAAAABAAAAAAANACMAAAABAAAAAAANACQAAAABAAAAAAAMACUAAAABAAAAAAAMACYAAAABAAAAAAALACcAAAABAAAAAAAMABgAAAABAAAAAAA=")
+tile_set = SubResource("TileSet_feb5d")
+metadata/_edit_lock_ = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_80nbo")
+camera_attributes = SubResource("CameraAttributesPhysical_e2o6t")
+compositor = SubResource("Compositor_feb5d")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(189.00003, 107)
+rotation = 3.1415925
+scale = Vector2(30.847244, 26.919096)
+zoom = Vector2(3.37, 3.37)
+
+[node name="player" parent="." groups=["player"] instance=ExtResource("3_feb5d")]
+modulate = Color(1.1638972, 1.1638972, 1.1638972, 1)
+z_index = 2
+position = Vector2(179, 91)
+
+[node name="store" type="StaticBody2D" parent="."]
+position = Vector2(-475, -207)
+
+[node name="Store_sprite" type="Sprite2D" parent="store"]
+modulate = Color(0.96533537, 1.188329, 1.4447718, 1)
+z_index = 1
+y_sort_enabled = true
+texture_filter = 1
+position = Vector2(556, 305)
+texture = ExtResource("2_e2o6t")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="store"]
+modulate = Color(0, 1, 1, 0)
+polygon = PackedVector2Array(533, 324, 548, 332, 580, 316, 580, 305, 570, 301, 533, 312)
+
+[node name="store2" type="StaticBody2D" parent="."]
+position = Vector2(-475, -207)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="store2"]
+modulate = Color(0, 1, 1, 0)
+position = Vector2(59, -27)
+polygon = PackedVector2Array(533, 324, 548, 332, 580, 316, 580, 305, 570, 301, 533, 312)
+
+[node name="Store_sprite" type="Sprite2D" parent="store2"]
+modulate = Color(0.9771911, 1.0166684, 0.87003845, 1)
+z_index = 1
+y_sort_enabled = true
+texture_filter = 1
+position = Vector2(616, 278)
+texture = ExtResource("2_e2o6t")
+
+[node name="store3" type="StaticBody2D" parent="."]
+position = Vector2(-475, -207)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="store3"]
+modulate = Color(0, 1, 1, 0)
+position = Vector2(114, -54)
+polygon = PackedVector2Array(533, 324, 548, 332, 580, 316, 580, 305, 570, 301, 533, 312)
+
+[node name="Store_sprite" type="Sprite2D" parent="store3"]
+z_index = 1
+y_sort_enabled = true
+texture_filter = 1
+position = Vector2(670, 251)
+texture = ExtResource("2_e2o6t")
+
+[node name="Boundary" type="StaticBody2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Boundary"]
+modulate = Color(0.011764706, 0.011764706, 0.011764706, 0)
+polygon = PackedVector2Array(49, 118, 49, 134, 177, 198, 340, 117, 340, 79, 215, 19, 215, 40, 338, 101, 179, 182)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Boundary"]
+modulate = Color(0.011764706, 0.011764706, 0.011764706, 0)
+polygon = PackedVector2Array(50, 119, 36, 110, 215, 24, 215, 35)
+
+[node name="customer" parent="." instance=ExtResource("4_fc0e3")]
+z_index = 1
+position = Vector2(215, 120)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_fc0e3")
+
+[node name="CustomerPaths" type="Node2D" parent="."]
+
+[node name="OriginPoint" type="Marker2D" parent="CustomerPaths"]
+position = Vector2(215, 120)
+
+[node name="Store1" type="Node2D" parent="CustomerPaths"]
+
+[node name="one_one" type="Marker2D" parent="CustomerPaths/Store1"]
+position = Vector2(95, 109)
+
+[node name="one_two" type="Marker2D" parent="CustomerPaths/Store1"]
+position = Vector2(117, 128)
+
+[node name="one_three" type="Marker2D" parent="CustomerPaths/Store1"]
+position = Vector2(133, 138)
+
+[node name="Store2" type="Node2D" parent="CustomerPaths"]
+
+[node name="two_one" type="Marker2D" parent="CustomerPaths/Store2"]
+position = Vector2(155, 82)
+
+[node name="two_two" type="Marker2D" parent="CustomerPaths/Store2"]
+position = Vector2(176, 99)
+
+[node name="two_three" type="Marker2D" parent="CustomerPaths/Store2"]
+position = Vector2(192, 109)
+
+[node name="Store3" type="Node2D" parent="CustomerPaths"]
+
+[node name="three_one" type="Marker2D" parent="CustomerPaths/Store3" groups=["customer"]]
+position = Vector2(210, 54)
+
+[node name="three_two" type="Marker2D" parent="CustomerPaths/Store3"]
+position = Vector2(228, 72)
+
+[node name="three_three" type="Marker2D" parent="CustomerPaths/Store3"]
+position = Vector2(244, 82)

@@ -1,0 +1,81 @@
+[gd_scene load_steps=3 format=3 uid="uid://l6kvncgbx4ql"]
+
+[ext_resource type="FontFile" uid="uid://c408u4x6cbnqo" path="res://Assests/m5x7.ttf" id="1_if853"]
+[ext_resource type="Script" uid="uid://c3voyqk65gpmh" path="res://Scripts/death_screen.gd" id="1_rwas2"]
+
+[node name="DeathScreen" type="ColorRect"]
+texture_filter = 1
+offset_right = 576.0
+offset_bottom = 482.0
+color = Color(0, 0, 0, 1)
+script = ExtResource("1_rwas2")
+
+[node name="deathText" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 133.0
+offset_top = 38.0
+offset_right = 444.0
+offset_bottom = 129.0
+theme_override_fonts/font = ExtResource("1_if853")
+theme_override_font_sizes/font_size = 100
+text = "YOU DIED"
+
+[node name="scoreText" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 95.0
+offset_top = 158.0
+offset_right = 503.0
+offset_bottom = 213.0
+theme_override_fonts/font = ExtResource("1_if853")
+theme_override_font_sizes/font_size = 60
+text = "score: 00000"
+
+[node name="highscore" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 95.0
+offset_top = 246.0
+offset_right = 503.0
+offset_bottom = 301.0
+theme_override_fonts/font = ExtResource("1_if853")
+theme_override_font_sizes/font_size = 60
+text = "highscore: 00000"
+
+[node name="replayText" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 95.0
+offset_top = 334.0
+offset_right = 283.0
+offset_bottom = 389.0
+theme_override_fonts/font = ExtResource("1_if853")
+theme_override_font_sizes/font_size = 60
+text = "replay:"
+
+[node name="noButton" type="Button" parent="replayText"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 320.0
+offset_right = 392.0
+offset_bottom = 56.0
+theme_override_fonts/font = ExtResource("1_if853")
+theme_override_font_sizes/font_size = 60
+text = "no"
+autowrap_mode = 3
+autowrap_trim_flags = 192
+clip_text = true
+icon_alignment = 1
+
+[node name="yesButton" type="Button" parent="replayText"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 206.0
+offset_right = 282.0
+offset_bottom = 56.0
+theme_override_fonts/font = ExtResource("1_if853")
+theme_override_font_sizes/font_size = 60
+text = "yes"
+
+[connection signal="pressed" from="replayText/yesButton" to="." method="_on_yes_button_pressed"]

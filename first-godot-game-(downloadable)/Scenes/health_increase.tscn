@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cs0n6rpd4m8y"]
+
+[ext_resource type="Texture2D" uid="uid://mqovxv104f0k" path="res://Assests/Upgrades/healthupgrade.png" id="1_l6vli"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l6vli"]
+size = Vector2(26, 26)
+
+[node name="healthIncrease" type="Sprite2D" groups=["upgrades"]]
+modulate = Color(0.38431373, 0.8235294, 0.7176471, 1)
+z_index = 3
+texture_filter = 1
+texture = ExtResource("1_l6vli")
+
+[node name="healthUpgrade" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="healthUpgrade"]
+shape = SubResource("RectangleShape2D_l6vli")

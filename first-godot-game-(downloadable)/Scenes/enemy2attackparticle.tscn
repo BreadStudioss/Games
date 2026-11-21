@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://0kdnnlj4j4ow"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_otorh"]
+particle_flag_disable_z = true
+spread = 0.0
+initial_velocity_min = 491.94998
+initial_velocity_max = 491.94998
+gravity = Vector3(100, 0, 0)
+scale_min = 10.0
+scale_max = 10.0
+color = Color(0.33889726, 0.32229197, 0.46421623, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fm8gu"]
+size = Vector2(0.0060775583, 1.3347216)
+
+[node name="GPUParticles2D" type="GPUParticles2D"]
+z_index = 3
+amount = 1
+sub_emitter = NodePath(".")
+speed_scale = 1.66
+process_material = SubResource("ParticleProcessMaterial_otorh")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+z_index = 3
+position = Vector2(-2.1855719e-08, 0.5000004)
+rotation = 1.5707964
+scale = Vector2(1151.7784, 101.28456)
+shape = SubResource("RectangleShape2D_fm8gu")

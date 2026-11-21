@@ -1,0 +1,193 @@
+[gd_scene load_steps=25 format=3 uid="uid://ciewp1nuwau7o"]
+
+[ext_resource type="Texture2D" uid="uid://d26af1lfsfe7w" path="res://Assests/Enemies/enemy2.png" id="1_867ty"]
+[ext_resource type="Script" uid="uid://b67jhwdskuw3i" path="res://Scripts/enemy_2.gd" id="1_mvvu1"]
+[ext_resource type="FontFile" uid="uid://c408u4x6cbnqo" path="res://Assests/m5x7.ttf" id="3_hv4bk"]
+[ext_resource type="Script" uid="uid://vs7m0ag6bjwd" path="res://Scripts/enemy2_animator.gd" id="3_qr8xe"]
+[ext_resource type="PackedScene" uid="uid://0kdnnlj4j4ow" path="res://Scenes/enemy2attackparticle.tscn" id="4_hv4bk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hv4bk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vfv5t"]
+atlas = ExtResource("1_867ty")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mvvu1"]
+atlas = ExtResource("1_867ty")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hv4bk"]
+atlas = ExtResource("1_867ty")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qr8xe"]
+atlas = ExtResource("1_867ty")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_05s6o"]
+atlas = ExtResource("1_867ty")
+region = Rect2(128, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_anlw3"]
+atlas = ExtResource("1_867ty")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u64o8"]
+atlas = ExtResource("1_867ty")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_roo12"]
+atlas = ExtResource("1_867ty")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nii7r"]
+atlas = ExtResource("1_867ty")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_orijv"]
+atlas = ExtResource("1_867ty")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mpdht"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vfv5t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mvvu1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hv4bk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qr8xe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_05s6o")
+}],
+"loop": false,
+"name": &"Attack",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_anlw3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u64o8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_roo12")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nii7r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_orijv")
+}],
+"loop": false,
+"name": &"Walk",
+"speed": 15.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_qr8xe"]
+colors = PackedColorArray(0.17821202, 0.17821205, 0.17821205, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_i6g32"]
+gradient = SubResource("Gradient_qr8xe")
+
+[sub_resource type="Gradient" id="Gradient_05s6o"]
+offsets = PackedFloat32Array(0.005899705, 1)
+colors = PackedColorArray(0.05882353, 0.05882353, 0.08627451, 1, 0.12156863, 0.1254902, 0.1764706, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_v158k"]
+gradient = SubResource("Gradient_05s6o")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_anlw3"]
+particle_flag_disable_z = true
+spread = 180.0
+flatness = 0.298
+initial_velocity_min = 46.52
+initial_velocity_max = 46.52
+gravity = Vector3(0, 200, 0)
+scale_min = 3.0
+scale_max = 9.37
+color = Color(0.6810102, 0.68101007, 0.68101, 1)
+color_ramp = SubResource("GradientTexture1D_v158k")
+color_initial_ramp = SubResource("GradientTexture1D_i6g32")
+
+[sub_resource type="Theme" id="Theme_u64o8"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4gdgy"]
+radius = 14.0
+height = 28.0
+
+[node name="Enemy2" type="CharacterBody2D" groups=["enemies2"]]
+script = ExtResource("1_mvvu1")
+
+[node name="Area2D2" type="Area2D" parent="." groups=["enemies2"]]
+scale = Vector2(1.3199991, 1.3518026)
+collision_layer = 5
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_hv4bk")
+
+[node name="enemyAnimator" type="AnimatedSprite2D" parent="."]
+z_index = 3
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_mpdht")
+animation = &"Walk"
+script = ExtResource("3_qr8xe")
+
+[node name="deathParticles" type="GPUParticles2D" parent="."]
+position = Vector2(0, 10)
+emitting = false
+one_shot = true
+speed_scale = 3.0
+explosiveness = 0.61
+trail_enabled = true
+process_material = SubResource("ParticleProcessMaterial_anlw3")
+
+[node name="attackParticles" parent="." instance=ExtResource("4_hv4bk")]
+position = Vector2(0, 6)
+scale = Vector2(0.40798798, 1)
+emitting = false
+lifetime = 0.24000000000000002
+speed_scale = 0.3
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+z_index = 4
+position = Vector2(-3, 2)
+target_position = Vector2(72, 0)
+
+[node name="EnemyHealth" type="RichTextLabel" parent="."]
+z_index = 10
+texture_filter = 1
+offset_left = -10.0
+offset_top = -21.0
+offset_right = 10.0
+offset_bottom = -9.0
+theme = SubResource("Theme_u64o8")
+theme_override_colors/default_color = Color(0.5477163, 0.5537393, 0.89869183, 1)
+theme_override_colors/font_shadow_color = Color(0.066755, 0.066755, 0.066755, 1)
+theme_override_constants/outline_size = 0
+theme_override_constants/strikethrough_alpha = 50
+theme_override_fonts/normal_font = ExtResource("3_hv4bk")
+theme_override_font_sizes/normal_font_size = 11
+text = "40
+"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="enemy2DashRange" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy2DashRange"]
+position = Vector2(-1, 0)
+shape = SubResource("CapsuleShape2D_4gdgy")
+
+[connection signal="animation_finished" from="enemyAnimator" to="enemyAnimator" method="_on_animation_finished"]

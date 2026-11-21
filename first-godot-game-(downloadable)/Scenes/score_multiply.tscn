@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8xmii2lvj7ja"]
+
+[ext_resource type="Texture2D" uid="uid://n7eff0iw2ucr" path="res://Assests/Upgrades/x2.png" id="1_e4rjn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e4rjn"]
+size = Vector2(33, 26)
+
+[node name="scoreMultiply" type="Sprite2D" groups=["upgrades"]]
+z_index = 3
+texture_filter = 1
+texture = ExtResource("1_e4rjn")
+
+[node name="scoreUpgrade" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="scoreUpgrade"]
+position = Vector2(-0.5, 1)
+shape = SubResource("RectangleShape2D_e4rjn")

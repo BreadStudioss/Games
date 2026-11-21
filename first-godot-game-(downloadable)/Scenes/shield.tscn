@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=3 uid="uid://7yelihlryc3c"]
+
+[ext_resource type="Texture2D" uid="uid://cc7lwxurstvw2" path="res://Assests/Upgrades/shield-Sheet.png" id="1_vuocu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ffst0"]
+atlas = ExtResource("1_vuocu")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dmnlx"]
+atlas = ExtResource("1_vuocu")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0vxx4"]
+atlas = ExtResource("1_vuocu")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4re53"]
+atlas = ExtResource("1_vuocu")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nsxlm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ffst0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dmnlx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0vxx4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4re53")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 6.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vuocu"]
+size = Vector2(22, 26)
+
+[node name="Shield" type="AnimatedSprite2D" groups=["upgrades"]]
+modulate = Color(0.5647059, 0.9254902, 0.98039216, 1)
+z_index = 3
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_nsxlm")
+animation = &"idle"
+frame_progress = 0.98462003
+
+[node name="shieldUpgrade" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="shieldUpgrade"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_vuocu")

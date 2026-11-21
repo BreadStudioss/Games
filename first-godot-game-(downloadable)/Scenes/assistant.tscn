@@ -1,0 +1,61 @@
+[gd_scene load_steps=8 format=3 uid="uid://cbm1jss21ncpi"]
+
+[ext_resource type="Script" uid="uid://cldtcnicbegqc" path="res://Scripts/assistant.gd" id="1_aq6p4"]
+[ext_resource type="Texture2D" uid="uid://kca7xp7c0gp3" path="res://Assests/PhysicalAttacks.png" id="2_rvjsh"]
+[ext_resource type="Texture2D" uid="uid://he7tpt00066v" path="res://Assests/playerSpriteSheet.png" id="3_b4mgc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_atumu"]
+atlas = ExtResource("2_rvjsh")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6louk"]
+atlas = ExtResource("3_b4mgc")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qxfue"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_atumu")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6louk")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rsnmj"]
+size = Vector2(22, 26)
+
+[node name="Assistant" type="CharacterBody2D" groups=["upgrades"]]
+z_index = 3
+texture_filter = 1
+script = ExtResource("1_aq6p4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_qxfue")
+animation = &"attack"
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_rsnmj")
+
+[node name="playerDetector" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="playerDetector"]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_rsnmj")
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="area_entered" from="playerDetector" to="." method="_on_hitbox_area_entered"]

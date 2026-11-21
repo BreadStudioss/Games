@@ -1,0 +1,56 @@
+[gd_scene load_steps=5 format=3 uid="uid://bic3rocv2xeyb"]
+
+[sub_resource type="Gradient" id="Gradient_rh514"]
+offsets = PackedFloat32Array(0, 0.004716981, 1)
+colors = PackedColorArray(0, 1, 1, 1, 0, 0.50967246, 0.50967246, 1, 0, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_5dtgx"]
+gradient = SubResource("Gradient_rh514")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bjvt1"]
+particle_flag_disable_z = true
+inherit_velocity_ratio = 2.54
+spread = 180.0
+flatness = 1.0
+initial_velocity_min = 170.59
+initial_velocity_max = 170.59
+angular_velocity_min = -698.82
+angular_velocity_max = -447.39
+gravity = Vector3(100, 0, 0)
+radial_accel_min = 0.99999774
+radial_accel_max = 0.99999774
+scale_min = 5.1
+scale_max = 5.1
+color_initial_ramp = SubResource("GradientTexture1D_5dtgx")
+hue_variation_min = 0.99999994
+hue_variation_max = 0.99999994
+sub_emitter_mode = 3
+sub_emitter_amount_at_collision = 1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5dtgx"]
+size = Vector2(9.029514, 8.0566635)
+
+[node name="GPUParticles2D" type="GPUParticles2D"]
+rotation = -1.5707964
+scale = Vector2(0.011, 0.01)
+emitting = false
+amount = 6
+sub_emitter = NodePath(".")
+lifetime = 2.0
+one_shot = true
+speed_scale = 5.0
+explosiveness = 0.75
+randomness = 1.0
+trail_lifetime = 0.01
+process_material = SubResource("ParticleProcessMaterial_bjvt1")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+z_index = 2
+position = Vector2(2.1891039e-05, 4.172325e-05)
+rotation = 1.5707964
+scale = Vector2(1151.7784, 135.40457)
+shape = SubResource("RectangleShape2D_5dtgx")
